@@ -152,7 +152,8 @@ with st.container():
             st.markdown(f"<h1 style='text-align: center; color: red;'>Before :{ str(numerize.numerize(int(sumW)))}</h1>", unsafe_allow_html=True)
             
         with b:
-           
+            if sumWAfter == 0:
+                sumWAfter=1
             saved = int(sumW)/int(sumWAfter)*100
             st.markdown(f"<h1 style='text-align: center; color: red;'>Saved :{ str((100-int(saved)))}%</h1>", unsafe_allow_html=True)
             
@@ -274,6 +275,9 @@ if drip and sprinkler :
     
 
     DataFrame['Cost'] = DataFrame.apply(lambda row: catValue(row), axis=1)
+else:
+     DataFrame['Cost'] =  0 
+
 
 DataFrame
 sumCost = int(DataFrame['Cost'].sum())
@@ -327,13 +331,15 @@ sumAll = xx['Immersion'].sum()
 # sumD
 # sumI
 allSolution = (sumD+sumI+sumS)
+if sumAll:
+    st.write("sum of solution : "+ str(numerize.numerize(allSolution)) )
+    st.write("sum of Immersion : "+ str(numerize.numerize(sumAll)) )
 
-st.write("sum of solution : "+ str(numerize.numerize(allSolution)) )
-st.write("sum of Immersion : "+ str(numerize.numerize(sumAll)) )
-
-st.write("sum of Saved : "+ str(numerize.numerize(int(sumAll)-int(allSolution))) )
-st.write("saved of all : "+ str(numerize.numerize(100-(allSolution/sumAll)*100))+"%" )
+    st.write("sum of Saved : "+ str(numerize.numerize(int(sumAll)-int(allSolution))) )
+    st.write("saved of all : "+ str(numerize.numerize(100-(allSolution/sumAll)*100))+"%" )
 
 # st.markdown(df.index.tolist())
+
+
 
 
