@@ -64,7 +64,7 @@ for name in dataCuntry:
 
     
 st.dataframe(Cuntry)
-options1 = st.multiselect('Select Government to irrigate with Immersion',dataCuntry)
+options1 = st.multiselect('Select Government to irrigation plan',dataCuntry)
 
 df = df.loc[df['Government_name'].isin(options1) ]
 xx = df
